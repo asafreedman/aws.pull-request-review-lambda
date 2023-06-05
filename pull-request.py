@@ -161,10 +161,7 @@ def lambda_handler(event, context):
             resourceArn = f'***** ARN of the pipeline created above'
         )
         
-        tags = {}
-        
-        for tag in pipeline_tags['tags']:
-            tags[tag['key']] = tag['value']
+        tags = { tag['key']:tag['value'] for tag in pipeline_tags['tags'] }
         
         codecommit_client = boto3.client('codecommit')
         
